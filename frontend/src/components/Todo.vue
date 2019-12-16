@@ -3,10 +3,10 @@
     <van-icon name="circle" v-if="item.status == true" class="status-icon" @click="checkStatus(false)" />
     <van-icon name="passed" v-else class="status-icon" @click="checkStatus(true)" />
     <span v-if="!ifShowInput">
-    <span v-if="item.status == true" class="active" @dblclick="ifShowInput = true;valueChange = item.description ">{{ item.description }}</span>
-    <span v-else class="completed" @dblclick="ifShowInput = true;valueChange = item.description">{{ item.description }}</span>
+      <span v-if="item.status == true" @dblclick="ifShowInput = true;valueChange = item.description ">{{ item.description }}</span>
+      <span v-else class="completed" @dblclick="ifShowInput = true;valueChange = item.description">{{ item.description }}</span>
     </span>
-    <van-field style="display:inline-block" class="active" v-show="ifShowInput" :atuofocus="true" v-model="valueChange" @blur="changeDescription"></van-field>
+    <van-field class="active" v-show="ifShowInput" :atuofocus="true" v-model="valueChange" @keyup.enter="changeDescription"  @blur="changeDescription"></van-field>
     <van-icon name="cross" class="del-icon" @click="delTodo" />
   </div>
 </template>
@@ -52,7 +52,17 @@ export default {
   position: relative;
   height: 100%;
   margin-left: 10px;
-  top: -2px;
+  top: -1px;
+  font-size: 20px;
+}
+.todo-box .active {
+  position: absolute;
+  margin-left: 10px;
+  height: 50px;
+  left: 18px;
+  top: -4px;
+  border: #FF4500 1px solid;
+  display: block;
   font-size: 20px;
 }
 .todo-box .del-icon {
